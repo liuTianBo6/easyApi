@@ -1,0 +1,53 @@
+spring:
+  application:
+    name: api-backend
+
+  profiles:
+    active: dev
+    include: password # 导入application-password.yml(此文件未用git管理)
+
+  # DataSource Config
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${mysql.url}
+    username: ${mysql.username}
+    password: ${mysql.password}
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  # session 失效时间（分钟）
+  session:
+    timeout: 86400
+    store-type: redis
+  # redis 配置
+  redis:
+    port: ${redis.port}
+    host: ${redis.host}
+    password: ${redis.password}
+    database: 0
+server:
+  port: 7529
+  servlet:
+    context-path: /api
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      logic-delete-field: isDelete # 全局逻辑删除的实体字段名(since 3.3.0,配置后可以忽略不配置步骤2)
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+api:
+  client:
+    access-key: api
+    secret-key: abcdefgh
+dubbo:
+  application:
+    name: api-backend
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    id: nacos-registry
+    address: nacos://${nacos.url}

@@ -1,0 +1,8 @@
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+api:
+  client:
+    access-key: 7ae3ffba7425028cb67f771fcf4825f8
+    secret-key: f8995877181ee0b8dc2b9e44a3768f91

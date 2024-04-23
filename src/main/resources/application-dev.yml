@@ -1,0 +1,8 @@
+spring:
+  devtools:
+    restart:
+      enable: true
+
+logging:
+  level:
+    com.cbj.mapper.*: debug
